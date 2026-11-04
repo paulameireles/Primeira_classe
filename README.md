@@ -2,8 +2,6 @@
 
 # Cartões CRC – Projeto Primeira Classe 
 
----
-
 ## Cliente
 
 | Responsabilidades | Colaboradores | Explicação | 
