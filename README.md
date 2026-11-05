@@ -70,7 +70,7 @@ O cartão CRC (**C**lasse – **R**esponsabilidades – **C**olaboradores) descr
 
 ---
 
-## 👩‍💻 Autora
+## 👩‍💻 Autores
 
 **Paula Meireles** · [@paulameireles](https://github.com/paulameireles)
 **Pedro Cordeiro Ventura** . [@pedrocventura](https://github.com/pedrocventura)
