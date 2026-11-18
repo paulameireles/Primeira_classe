@@ -37,7 +37,7 @@ public class Cliente {
     public double calcularTotalGasto(){
         double total = 0.0;
         for(Bilhete bilhete : bilhetes){
-            total += bilhete.calcularPreco;
+            total += bilhete.calcularPreco();
         }
         return total;
     }
