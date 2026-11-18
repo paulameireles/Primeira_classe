@@ -34,7 +34,7 @@ public class Cliente {
         bilhetes.add(bilhete);
     }
 
-    public double calcularPreco(){
+    public double calcularTotalGasto(){
         double total = 0.0;
         for(Bilhete bilhete : bilhetes){
             total += bilhete.calcularPreco;
@@ -42,7 +42,7 @@ public class Cliente {
         return total;
     }
 
-    public String fazerRelatorio(){
+    public String gerarRelatorio(){
         StringBuilder relatorio = new StringBuilder();
         relatorio.append("Relatório do Cliente: ").append(nome).append(" ").append(sobrenome).append("\n");
         relatorio.append("Número de Registro: ").append(numeroRegistro).append("\n");
@@ -50,7 +50,7 @@ public class Cliente {
         for(Bilhete bilhete : bilhetes){
             relatorio.append(bilhete.toString()).append("\n");
         }
-        relatorio.append("Total Gasto: R$").append(calcularPreco()).append("\n");
+        relatorio.append("Total Gasto: R$").append(calcularTotalGasto()).append("\n");
         return relatorio.toString();
     }
 
