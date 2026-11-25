@@ -1,32 +1,68 @@
+/*
+ * App - TP (última parte)
+ * Métodos: cadastrarVoo() e procurarVoos() - Paula Meireles
+ *
+ * USO DE IA: Claude Opus 5.5 (claude-opus-5-5), usado como tutor
+ * para revisar o código.
+ */
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+public class App {
 
-public class App{
-    
     private static List<Rota> rotas = new ArrayList<>();
     private static List<Voo> voos = new ArrayList<>();
     private static Scanner scanner = new Scanner(System.in);
 
-    /*public static Voo procurarVoos(){
-        System.out.println("Preço Base: ");
-        int escolha = scanner.nextInt();
-        double preco = nextDouble();
-        Voo novoVoo = new Voo(rotaEscolhida, data, preco);
-    } */
-    
+    public static void procurarVoos() {
+        Cidade[] cidades = Cidade.values();
+        for (int i = 0; i < cidades.length; i++) {
+            System.out.println((i + 1) + " - " + cidades[i]);
+        }
+
+        System.out.println("Origem: ");
+
+        int escolhaOrigem = scanner.nextInt();
+        Cidade origem = cidades[escolhaOrigem - 1];
+
+        System.out.println("Destino: ");
+        int escolhaDestino = scanner.nextInt();
+        Cidade destino = cidades[escolhaDestino - 1];
+
+        System.out.println("Data do voo (dd/MM/aaaa): ");
+        String textoData = scanner.next();
+
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate data = LocalDate.parse(textoData, formato);
+
+        System.out.println("Buscando: " + origem + " -> " + destino + " em " + data);
+        boolean encontrou = false;
+        for (Voo voo : voos) {
+            if ((voo.getRota().getOrigem() == origem) &&
+                    (voo.getRota().getDestino() == destino) &&
+                    (voo.getData().equals(data)) &&
+                    (voo.temLugarDisponivel())) {
+                
+                    System.out.println(voo.getRota() + " em " + voo.getData());
+                    encontrou = true;
+            }
+        }
+        if(!encontrou){
+            System.out.println("Nenhum voo encontrado");
+        }
+    }
 
     public static void cadastrarVoo() {
-        for(int i = 0; i < rotas.size(); i++){
+        for (int i = 0; i < rotas.size(); i++) {
             System.out.println((i + 1) + " - " + rotas.get(i));
-            
         }
         System.out.println("Escolha a rota");
         int escolha = scanner.nextInt();
-        Rota rotaEscolhida = rotas.get(escolha -1);
+        Rota rotaEscolhida = rotas.get(escolha - 1);
         System.out.println("Voce escolheu: " + rotaEscolhida);
 
         System.out.println("Data do voo (dd/MM/aaaa): ");
@@ -41,13 +77,15 @@ public class App{
         Voo novoVoo = new Voo(rotaEscolhida, data, preco);
         voos.add(novoVoo);
         System.out.println("Voo cadastrado: " + novoVoo.getRota() + " em " + novoVoo.getData());
+
     }
 
-    public static void main(String[]args){
+    public static void main(String[] args) {
         rotas.add(new Rota("0001", Cidade.BELO_HORIZONTE, Cidade.RECIFE));
         rotas.add(new Rota("0002", Cidade.FORTALEZA, Cidade.RECIFE));
         rotas.add(new Rota("0003", Cidade.JOAO_PESSOA, Cidade.NATAL));
 
         cadastrarVoo();
+        procurarVoos();
     }
 }
