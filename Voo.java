@@ -45,10 +45,10 @@ public class Voo {
         return CAPACIDADE_MAXIMA==lugaresOcupados ? false : true;
     }
     public boolean ocuparLugar(){
-        if (temLugarDisponivel()){
-            lugaresOcupados+=1;
-            return true;
+        if (!temLugarDisponivel()){
+            return false;
         }
-        else return false;
+        lugaresOcupados+=1;
+        return true;
     }
 }
